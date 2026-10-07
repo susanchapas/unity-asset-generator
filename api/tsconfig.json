@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.node.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "../node_modules/.tmp/tsconfig.api.tsbuildinfo",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true
+  },
+  "include": [".", "../src/gemini", "../src/spec"],
+  "exclude": ["../src/spec/*.test.ts"]
+}
