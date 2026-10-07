@@ -1,0 +1,12 @@
+{
+  "name": "Pine Tree",
+  "assetType": "prop",
+  "palette": ["#6b4a2b", "#2f6b3a", "#3f8a48", "#58a85a"],
+  "pivot": "bottom-center",
+  "parts": [
+    { "name": "Trunk", "primitive": "cylinder", "segments": 6, "taper": 0.7, "size": [0.3, 1.2, 0.3], "position": [0, 0.6, 0], "rotation": [0, 0, 0], "paletteIndex": 0 },
+    { "name": "FoliageLow", "primitive": "cylinder", "segments": 7, "taper": 0, "size": [1.6, 1.2, 1.6], "position": [0, 1.6, 0], "rotation": [0, 0, 0], "paletteIndex": 1 },
+    { "name": "FoliageMid", "primitive": "cylinder", "segments": 7, "taper": 0, "size": [1.2, 1, 1.2], "position": [0, 2.3, 0], "rotation": [0, 25, 0], "paletteIndex": 2 },
+    { "name": "FoliageTop", "primitive": "cylinder", "segments": 7, "taper": 0, "size": [0.8, 0.8, 0.8], "position": [0, 2.9, 0], "rotation": [0, 50, 0], "paletteIndex": 3 }
+  ]
+}

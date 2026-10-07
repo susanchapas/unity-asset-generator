@@ -1,0 +1,10 @@
+{
+  "name": "Boulder",
+  "assetType": "prop",
+  "palette": ["#7d7a73", "#5e5b55"],
+  "pivot": "bottom-center",
+  "parts": [
+    { "name": "Main", "primitive": "sphere", "segments": 6, "size": [0.9, 0.55, 0.7], "position": [0, 0.25, 0], "rotation": [0, 20, 0], "paletteIndex": 0 },
+    { "name": "Chunk", "primitive": "sphere", "segments": 5, "size": [0.5, 0.4, 0.45], "position": [0.35, 0.15, 0.2], "rotation": [10, -30, 0], "paletteIndex": 1 }
+  ]
+}

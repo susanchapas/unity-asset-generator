@@ -1,0 +1,13 @@
+{
+  "name": "Wooden Crate",
+  "assetType": "prop",
+  "palette": ["#9c6b3f", "#6e4526", "#4a4a4a"],
+  "pivot": "bottom-center",
+  "parts": [
+    { "name": "Body", "primitive": "box", "size": [0.76, 0.76, 0.76], "position": [0, 0.4, 0], "rotation": [0, 0, 0], "paletteIndex": 0 },
+    { "name": "BandBottom", "primitive": "box", "size": [0.8, 0.08, 0.8], "position": [0, 0.04, 0], "rotation": [0, 0, 0], "paletteIndex": 1 },
+    { "name": "BandTop", "primitive": "box", "size": [0.8, 0.08, 0.8], "position": [0, 0.76, 0], "rotation": [0, 0, 0], "paletteIndex": 1 },
+    { "name": "BraceFront", "primitive": "box", "size": [0.08, 0.95, 0.02], "position": [0, 0.4, 0.39], "rotation": [0, 0, 45], "paletteIndex": 1 },
+    { "name": "Latch", "primitive": "box", "size": [0.1, 0.06, 0.03], "position": [0, 0.7, 0.41], "rotation": [0, 0, 0], "paletteIndex": 2 }
+  ]
+}

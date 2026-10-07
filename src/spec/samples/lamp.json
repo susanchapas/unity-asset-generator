@@ -1,0 +1,12 @@
+{
+  "name": "Floor Lamp",
+  "assetType": "prop",
+  "palette": ["#2b2b2e", "#e9d8a6", "#fff4c2"],
+  "pivot": "bottom-center",
+  "parts": [
+    { "name": "Base", "primitive": "cylinder", "segments": 12, "taper": 0.9, "size": [0.3, 0.04, 0.3], "position": [0, 0.02, 0], "rotation": [0, 0, 0], "paletteIndex": 0 },
+    { "name": "Pole", "primitive": "cylinder", "segments": 6, "taper": 1, "size": [0.03, 1.4, 0.03], "position": [0, 0.74, 0], "rotation": [0, 0, 0], "paletteIndex": 0 },
+    { "name": "Bulb", "primitive": "sphere", "segments": 8, "size": [0.1, 0.1, 0.1], "position": [0, 1.46, 0], "rotation": [0, 0, 0], "paletteIndex": 2 },
+    { "name": "Shade", "primitive": "cylinder", "segments": 12, "taper": 0.6, "size": [0.5, 0.35, 0.5], "position": [0, 1.5, 0], "rotation": [0, 0, 0], "paletteIndex": 1 }
+  ]
+}
