@@ -42,6 +42,15 @@ describe('generateSpec', () => {
     expect(ai.models.generateContent).toHaveBeenCalledOnce()
   })
 
+  it('sends the reference image before the prompt', async () => {
+    const ai = mockAi(JSON.stringify(mug))
+    const image = { mimeType: 'image/jpeg' as const, data: 'AAAA' }
+    await generateSpec(ai, '', defaultSettings, image)
+    const [{ parts }] = ai.models.generateContent.mock.calls[0][0].contents
+    expect(parts[0]).toEqual({ inlineData: image })
+    expect(parts[1].text).toContain('reference image')
+  })
+
   it('retries once with the validation errors', async () => {
     const ai = mockAi(invalid, JSON.stringify(mug))
     await expect(generateSpec(ai, 'mug', defaultSettings)).resolves.toEqual(mug)

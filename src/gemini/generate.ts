@@ -1,6 +1,6 @@
-import type { GoogleGenAI } from '@google/genai'
+import type { Content, GoogleGenAI } from '@google/genai'
 import { z } from 'zod'
-import type { Settings } from '../spec/contracts.ts'
+import type { ReferenceImage, Settings } from '../spec/contracts.ts'
 import { assetSpecSchema, type AssetSpec } from '../spec/schema.ts'
 import { buildSystemPrompt, buildUserPrompt } from './prompt.ts'
 
@@ -8,11 +8,10 @@ export const model = 'gemini-2.5-flash'
 
 export const { $schema: _, ...responseJsonSchema } = z.toJSONSchema(assetSpecSchema)
 
-type Content = { role: 'user' | 'model'; parts: { text: string }[] }
-
 /** Asks Gemini for an asset spec, retrying once with the validation issues. */
-export async function generateSpec(ai: Pick<GoogleGenAI, 'models'>, prompt: string, settings: Settings): Promise<AssetSpec> {
-  const contents: Content[] = [{ role: 'user', parts: [{ text: buildUserPrompt(prompt, settings) }] }]
+export async function generateSpec(ai: Pick<GoogleGenAI, 'models'>, prompt: string, settings: Settings, image?: ReferenceImage): Promise<AssetSpec> {
+  const request = { text: buildUserPrompt(prompt, settings, !!image) }
+  const contents: Content[] = [{ role: 'user', parts: image ? [{ inlineData: image }, request] : [request] }]
   let problem = ''
 
   for (let attempt = 0; attempt < 2; attempt++) {

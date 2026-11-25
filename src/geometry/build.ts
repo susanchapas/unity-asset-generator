@@ -67,6 +67,7 @@ function applyPivot(geometries: BufferGeometry[], pivot: AssetSpec['pivot']) {
     geometry.translate(offset.x, offset.y, offset.z)
     geometry.computeVertexNormals()
   }
+  return offset.toArray()
 }
 
 /** Builds every part, then lowers segment counts of the largest parts until the platform budget is met. */
@@ -89,9 +90,9 @@ export function buildAsset(spec: AssetSpec, settings: Settings): BuiltAsset {
     triangles[target] = triangleCount(geometries[target])
   }
 
-  applyPivot(geometries, spec.pivot)
+  const pivotOffset = applyPivot(geometries, spec.pivot)
   const parts = spec.parts.map(({ name, paletteIndex }, i) => ({ name, paletteIndex, geometry: geometries[i] }))
-  return { name: spec.name, parts, triangles: total(), budget }
+  return { name: spec.name, parts, triangles: total(), budget, pivotOffset }
 }
 
 export function mergeParts(parts: BuiltPart[]): BufferGeometry {

@@ -21,6 +21,14 @@ export const settingsSchema = z.object({
 
 export type Settings = z.infer<typeof settingsSchema>
 
+export const referenceImageSchema = z.object({
+  mimeType: z.enum(['image/jpeg', 'image/png', 'image/webp']),
+  /** Base64 image bytes, without the data URL prefix. */
+  data: z.base64().max(4_000_000),
+})
+
+export type ReferenceImage = z.infer<typeof referenceImageSchema>
+
 export const defaultSettings: Settings = {
   assetType: 'prop',
   detail: 0.5,
@@ -44,4 +52,6 @@ export interface BuiltAsset {
   parts: BuiltPart[]
   triangles: number
   budget: number
+  /** Translation applied to every part so the pivot sits at the origin. */
+  pivotOffset: [number, number, number]
 }

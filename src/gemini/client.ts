@@ -1,11 +1,11 @@
-import type { Settings } from '../spec/contracts'
+import type { ReferenceImage, Settings } from '../spec/contracts'
 import { assetSpecSchema, type AssetSpec } from '../spec/schema'
 
-export async function requestSpec(prompt: string, settings: Settings): Promise<AssetSpec> {
+export async function requestSpec(prompt: string, settings: Settings, image?: ReferenceImage): Promise<AssetSpec> {
   const res = await fetch('/api/generate', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, settings }),
+    body: JSON.stringify({ prompt, settings, image }),
   })
   const body: unknown = await res.json().catch(() => null)
 

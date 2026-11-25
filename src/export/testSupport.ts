@@ -74,5 +74,5 @@ export function buildTestAsset(spec: AssetSpec): BuiltAsset {
     return { name: part.name, paletteIndex: part.paletteIndex, geometry }
   })
   const triangles = parts.reduce((sum, part) => sum + part.geometry.getAttribute('position').count / 3, 0)
-  return { name: spec.name, parts, triangles, budget: 2000 }
+  return { name: spec.name, parts, triangles, budget: 2000, pivotOffset: [0, 0, 0] }
 }

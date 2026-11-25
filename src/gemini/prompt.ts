@@ -35,7 +35,7 @@ Examples:
 ${shots}`
 }
 
-export function buildUserPrompt(prompt: string, settings: Settings) {
+export function buildUserPrompt(prompt: string, settings: Settings, hasImage = false) {
   const shape =
     settings.roundness >= 0.66
       ? 'strongly prefer rounded shapes (spheres, cylinders, tori) over angular boxes'
@@ -51,7 +51,11 @@ export function buildUserPrompt(prompt: string, settings: Settings) {
   const palette =
     settings.paletteStyle === 'auto' ? 'choose colors that suit the object' : `use a ${settings.paletteStyle} color palette`
 
-  return `Create a low-poly prop: ${prompt}
+  const subject = hasImage
+    ? `Create a low-poly prop that matches the attached reference image in silhouette, proportions and colors${prompt ? `: ${prompt}` : '.'}`
+    : `Create a low-poly prop: ${prompt}`
+
+  return `${subject}
 
 Style settings:
 - roundness ${settings.roundness.toFixed(2)} of 1: ${shape}

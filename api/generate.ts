@@ -1,9 +1,11 @@
 import { GoogleGenAI } from '@google/genai'
 import { z } from 'zod'
 import { generateSpec } from '../src/gemini/generate.ts'
-import { settingsSchema } from '../src/spec/contracts.ts'
+import { referenceImageSchema, settingsSchema } from '../src/spec/contracts.ts'
 
-const bodySchema = z.object({ prompt: z.string().min(1).max(500), settings: settingsSchema })
+const bodySchema = z
+  .object({ prompt: z.string().trim().max(500), settings: settingsSchema, image: referenceImageSchema.optional() })
+  .refine((body) => body.prompt || body.image, 'Enter a prompt or attach a reference image')
 
 const json = (body: unknown, status = 200) => Response.json(body, { status })
 
@@ -18,7 +20,7 @@ export default {
     if (!body.success) return json({ error: z.prettifyError(body.error) }, 400)
 
     try {
-      return json(await generateSpec(new GoogleGenAI({ apiKey }), body.data.prompt, body.data.settings))
+      return json(await generateSpec(new GoogleGenAI({ apiKey }), body.data.prompt, body.data.settings, body.data.image))
     } catch (e) {
       return json({ error: e instanceof Error ? e.message : 'Generation failed' }, 502)
     }
